@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 */
 
 #Route::get('/', 'WelcomeController@index');
-Route::get('home', 'HomeController@index');
+Route::get('home','HomeController@index');
 Route::get('/','HomeController@index');
 Route::controllers([
 	'auth' => 'Auth\AuthController',
