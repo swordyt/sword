@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Http\Request; 
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -13,7 +13,7 @@
 
 #Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
-Route::get('/', 'HomeController@index');
+Route::get('/','HomeController@index');
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
@@ -21,7 +21,8 @@ Route::controllers([
 Route::get('pages/{id}','PagesController@show');
 Route::post('comment/store','CommentsController@store');
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'],function(){
-	Route::get('/','AdminHomeController@index');
-	Route::resource('pages','PagesController');
-	Route::resource('comments','CommentsController');
+		Route::get('/','AdminHomeController@index');
+		Route::resource('pages','PagesController');
+		Route::resource('comments','CommentsController');
+	
 });

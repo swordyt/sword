@@ -14,9 +14,9 @@ class AdminHomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {	#var_dump(Page::all());
+    {	
         return view('AdminHome')->withPages(Page::all());
-		#return 'ss';
+		
     }
 
     /**

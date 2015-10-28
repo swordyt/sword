@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" >
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>
-	Learn Laravel
+	Sword
 	</title>
 	<link href="/css/app.css" rel="stylesheet">
 	<link href='http://fonts.useso.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
