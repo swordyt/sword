@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Page;
+use App\Comment;
 use Redirect,Input,Auth;
 class PagesController extends Controller
 {
@@ -103,6 +104,7 @@ class PagesController extends Controller
     public function destroy($id)
     {
         $page = Page::find($id);
+		Comment::where('page_id','=',$id)->delete();
 		$page->delete();
 		return Redirect::to('admin');
     }
