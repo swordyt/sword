@@ -2,17 +2,17 @@
 
 @section('content')
   <h4>
-    <a href="/">⬅️返回首页</a>
+    <a href="/articles">⬅️返回Articles首页</a>
   </h4>
 
-  <h1 style="text-align: center; margin-top: 50px;">{{ $page->title }}</h1>
+  <h1 style="text-align: center; margin-top: 50px;">{{ $article->title }}</h1>
   <hr>
   <div id="date" style="text-align: right;">
-    {{ $page->updated_at }}
+    {{ $article->updated_at }}
   </div>
   <div id="content" style="padding: 50px;">
     <p>
-      {{ $page->body }}
+      {{ $article->body }}
     </p>
   </div>
   <div id="comments" style="margin-bottom: 100px;">
@@ -29,9 +29,9 @@
     @endif
 
     <div id="new">
-      <form action="{{ URL('comment/page') }}" method="POST">
+      <form action="{{ URL('comment/article') }}" method="POST">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <input type="hidden" name="page_id" value="{{ $page->id }}">
+        <input type="hidden" name="article_id" value="{{ $article->id }}">
         <div class="form-group">
           <label>Nickname</label>
           <input type="text" name="nickname" class="form-control" style="width: 300px;" required="required">
@@ -61,7 +61,7 @@ function reply(a) {
 </script>
 
     <div class="conmments" style="margin-top: 100px;">
-      @foreach ($page->hasManyComments as $comment)
+      @foreach ($article->hasManyComments as $comment)
 
         <div class="one" style="border-top: solid 20px #efefef; padding: 5px 20px;">
           <div class="nickname" data="{{ $comment->nickname }}">
