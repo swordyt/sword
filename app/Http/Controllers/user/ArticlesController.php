@@ -55,7 +55,7 @@ class ArticlesController extends Controller
 		$realPath = $image->getRealPath();
 		$extension = $image->getClientOriginalExtension();
 		$newName = md5(date('ymdhis').$clientName).'.'.$extension;
-		$image->move(app_path().'\\storage\\uploads\\',$newName);
+		$image->move(app_path().'/storage/uploads/',$newName);
 		$article->image =$newName;
 		$article->user_id = $request->input('user_id');
 		$article->title = $request->input('title');

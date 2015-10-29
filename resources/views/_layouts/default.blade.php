@@ -14,7 +14,7 @@
 	<div>
 		@yield('content')
 		<div id="footer" style="text-align:center; border-top:dashed 3px #eeeeee;margin:50px 0;padding:20px;">
-		©2015 <a href="https://localhost:8000">sword</a>
+		©2015 <a href="{{URL('/')}}">sword</a>
 		</div>
 	</div>
 </body>
