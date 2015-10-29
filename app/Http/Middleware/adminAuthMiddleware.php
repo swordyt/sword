@@ -23,11 +23,12 @@ class adminAuthMiddleware
 			if(Auth::user()->admin_id == 1){
 				return $next($request);
 			}
-			return Redirect::back();
-
+				return Redirect::back();
 		}else{
-			return Redirect::back();
-		}
+			return Redirect::to('auth/login');
+		}	
+
+
         
     }
 }

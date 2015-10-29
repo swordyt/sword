@@ -19,10 +19,21 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 Route::get('pages/{id}','PagesController@show');
-Route::post('comment/store','CommentsController@store');
-Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'],function(){
+Route::post('comment/page','CommentsController@page');
+Route::post('comment/article','CommentsController@article');
+Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'adminAuth'],function(){
+#Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'],function(){
 		Route::get('/','AdminHomeController@index');
 		Route::resource('pages','PagesController');
 		Route::resource('comments','CommentsController');
-	
+		Route::resource('articles','ArticlesController');
 });
+Route::get('articles','ArticlesController@index');
+Route::get('articles/{id}','ArticlesController@show');
+
+Route::group(['prefix'=>'user','namespace'=>'user','middleware'=>'auth'],function(){
+	Route::resource('articles','ArticlesController');
+});
+
+
+

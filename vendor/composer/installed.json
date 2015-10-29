@@ -2861,18 +2861,66 @@
         "homepage": "https://symfony.com"
     },
     {
-        "name": "laravel/framework",
-        "version": "v5.1.21",
-        "version_normalized": "5.1.21.0",
+        "name": "symfony/yaml",
+        "version": "v2.7.6",
+        "version_normalized": "2.7.6.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/laravel/framework.git",
-            "reference": "21a3f2023c2f59dcd5dc3a0ec5d8ab4c9c2f52a9"
+            "url": "https://github.com/symfony/yaml.git",
+            "reference": "eca9019c88fbe250164affd107bc8057771f3f4d"
         },
         "dist": {
             "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/laravel/framework/21a3f2023c2f59dcd5dc3a0ec5d8ab4c9c2f52a9.zip",
-            "reference": "21a3f2023c2f59dcd5dc3a0ec5d8ab4c9c2f52a9",
+            "url": "http://packagist.phpcomposer.com/files/symfony/yaml/eca9019c88fbe250164affd107bc8057771f3f4d.zip",
+            "reference": "eca9019c88fbe250164affd107bc8057771f3f4d",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.9"
+        },
+        "time": "2015-10-11 09:39:48",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.7-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Component\\Yaml\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony Yaml Component",
+        "homepage": "https://symfony.com"
+    },
+    {
+        "name": "laravel/framework",
+        "version": "v5.1.22",
+        "version_normalized": "5.1.22.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/laravel/framework.git",
+            "reference": "11d9627c7cd4d12b6e884b87daa7a2f898cf54cb"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "http://packagist.phpcomposer.com/files/laravel/framework/11d9627c7cd4d12b6e884b87daa7a2f898cf54cb.zip",
+            "reference": "11d9627c7cd4d12b6e884b87daa7a2f898cf54cb",
             "shasum": ""
         },
         "require": {
@@ -2954,7 +3002,7 @@
             "predis/predis": "Required to use the redis cache and queue drivers (~1.0).",
             "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (~2.0)."
         },
-        "time": "2015-10-28 03:48:55",
+        "time": "2015-10-28 21:58:18",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2990,53 +3038,5 @@
             "framework",
             "laravel"
         ]
-    },
-    {
-        "name": "symfony/yaml",
-        "version": "v2.7.6",
-        "version_normalized": "2.7.6.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/symfony/yaml.git",
-            "reference": "eca9019c88fbe250164affd107bc8057771f3f4d"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "http://packagist.phpcomposer.com/files/symfony/yaml/eca9019c88fbe250164affd107bc8057771f3f4d.zip",
-            "reference": "eca9019c88fbe250164affd107bc8057771f3f4d",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.9"
-        },
-        "time": "2015-10-11 09:39:48",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.7-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Symfony\\Component\\Yaml\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            },
-            {
-                "name": "Symfony Community",
-                "homepage": "https://symfony.com/contributors"
-            }
-        ],
-        "description": "Symfony Yaml Component",
-        "homepage": "https://symfony.com"
     }
 ]
