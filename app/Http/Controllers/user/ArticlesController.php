@@ -40,12 +40,7 @@ class ArticlesController extends Controller
     public function store(Request $request)
     {
 		
-        $article = new Article();
-		/*$article->user_id = $request->input('user_id');
-		$article->title = $request->input('title');
-		$article->slug = $request->input('slug');
-		$article->body = $request->input('body');
-		$article->image = $request->input('user_id');*/
+       $article = new Article();
 		$image = Input::file('image');
 		if(!$image->isValid()){
 			return Redirect::back()->withInput->withErrors('上传文件失败，请重新发表！');
@@ -75,7 +70,12 @@ class ArticlesController extends Controller
      */
     public function edit($id)
     {
-        
+		try{
+        $article = Article::findOrFail($id);
+		return view('articles.edit')->withArticle($article);
+		}catch(Exception $e){
+		Redirect::back()->withInput()->withErrors('文章不可修改.');
+	}
     }
 
     /**
@@ -87,7 +87,7 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       
     }
 
     /**
