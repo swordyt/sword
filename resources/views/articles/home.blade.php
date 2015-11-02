@@ -19,6 +19,9 @@
 				<div class="body">
 					<p>{{ $article->body }}</p>
 				</div>
+				<div >
+					<p><image src="{{ app_path().'/storage/uploads/'.$article->image}}" /></p>
+				</div>
 			</li>
 			@endforeach
 			</ul>
