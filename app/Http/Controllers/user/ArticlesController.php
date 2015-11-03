@@ -87,7 +87,39 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
+	try{
+		$user = Auth::user();
+		$article = Article::findOrFail($id);
+		if($user->id != $article->user_id){
+		  return Redirect::back()-withInput()->withErrors('文章修改失败！');
+		}
+		$image = Input::file('image');
+		if(!isset($image)){
+			
+		}else{
+			$clientName = $image->getClientOriginalName();
+			$tmpName = $image->getFileName();
+			$realPath = $image->getRealPath();
+			$extension = $image->getClientOriginalExtension();
+			$newName = md5(date('ymdhis').$clientName).'.'.$extension;
+			$image->move(app_path().'/storage/uploads/',$newName);
+			$article->image = $newName;
+			$article->image_name = $clientName;
+		}
+		$article->title=$request->input('title');
+		$article->slug = $request->input('slug');
+		$article->body = $request->input('body');
+		if(!$article->save()){
+			return Redirect::back()->withInput()->withErrors("文章修改失败！");
+		}
+		return view('articles.myhome')->withArticles(Article::MyArticles(Auth::user()->id)->get());
+		
+		
+		
+		
+	}catch(Exception $e){
+			Redirect::back()->withInput()->withErrors('文章更新失败！');
+		}
     }
 
     /**

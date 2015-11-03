@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Article;
-use Redirect;
+use Redirect,Utils;
 class ArticlesController extends Controller
 {
     /**
@@ -17,6 +16,8 @@ class ArticlesController extends Controller
      */
     public function index()
     {
+		dd('ss');
+		return Utils::getUploadPath();
         return view('articles.home')->withArticles(Article::all());
 		#dd(Article::all());
 		
