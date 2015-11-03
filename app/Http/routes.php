@@ -12,38 +12,20 @@ use Illuminate\Http\Request;
 */
 
 #Route::get('/', 'WelcomeController@index');
-Route::get('flush',function(){
-	return view('flush.view');
-});
-Route::post('flush',function(Request $request){
-	$addr = "http://r.chinacache.com/content/refresh";
-	$name= $request->input('name');
-	$password= $request->input('password');
-		$urls=explode(',',$request->input('urls'));
-		$dirs = explode(',',$request->input('dirs'));
-		$callback = array('url'=>$request->input('url'),'email'=>$request->input('email'),'acptNotice'=>$request->input('acptNotice'));
-	$task = json_encode(array('urls'=>$urls,'dirs'=>$dirs,'callback'=>$callback));
-	$post_data = json_encode(array('username'=>$name,'password'=>$password,'task'=>$task));
-	
-	    $ch = curl_init();  
-        curl_setopt($ch, CURLOPT_POST, 1);  
-        curl_setopt($ch, CURLOPT_URL, $addr);  
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);  
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(  
-            'Content-Type: application/json; charset=utf-8',  
-            'Content-Length: ' . strlen($post_data))  
-        );  
-        ob_start();  
-        curl_exec($ch);  
-        $return_content = ob_get_contents();  
-        ob_end_clean();  
-  
-        $return_code = curl_getinfo($ch, CURLINFO_HTTP_CODE); 
-		$errors = array('statcode'=>$return_code,'msg'=>$return_content);
-        return view('flush.view')->withErrors($errors);
-	
-	
+Route::group(['prefix'=>'flush','namespace'=>'flush'],function(){
+	Route::get('/',function(){
+		return view('flush.viewcc');
 	});
+	Route::get('cloud',function(){
+		return view('flush.viewcloud');
+	});
+	Route::resource('cc','ChinacacheController');
+	Route::post('cloud','CloudController@store');
+});
+
+
+
+
 Route::get('home','HomeController@index');
 Route::get('/','HomeController@index');
 Route::controllers([

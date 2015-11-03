@@ -7,6 +7,15 @@ class Utils {
 			return Utiles::getLinuxPath();
 		}
 	}
+	public function doPost($url,$data){
+			$ch = curl_init();
+			curl_setopt($ch,CURLOPT_URL,$url);
+			curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+			curl_setopt($ch,CURLOPT_POST,$url);
+			curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
+			$response = curl_exec($ch);
+			return $response;
+		}
 	private  function getWinPath(){
 		return app_path().'\\storage\\uploads\\';
 	}

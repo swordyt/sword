@@ -1,4 +1,4 @@
-1、选择器 属性：值
+﻿1、选择器 属性：值
 selector {property: value}
 标签名 属性：值
 <link rel="stylesheet" type="text/css" href="mystyle.css" />
@@ -149,3 +149,5 @@ top、right、left、bottom
 （4）、static	默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。
 （5）、inherit	规定应该从父元素继承 position 属性的值。
 】
+13、
+
