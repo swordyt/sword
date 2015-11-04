@@ -33,9 +33,16 @@
                 {{ $comment->email }}
               </td>
               <td class="col-lg-4">
-                <a href="{{ URL('pages/'.$comment->page_id) }}" target="_blank">
+			  @if($comment->page_id != 0)
+				  <a href="{{ URL('pages/'.$comment->page_id) }}" target="_blank">
                   {{ App\Page::find($comment->page_id)->title }}
                 </a>
+				@else
+					<a href="{{ URL('articles/'.$comment->article_id) }}" target="_blank">
+                  {{ App\Article::find($comment->article_id)->title }}
+                </a>
+			  @endif
+                
               </td>
               <td class="col-lg-1">
                 <a href="{{ URL('admin/comments/'.$comment->id.'/edit') }}" class="btn btn-success">编辑</a>

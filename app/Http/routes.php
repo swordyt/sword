@@ -24,9 +24,6 @@ Route::group(['prefix'=>'flush','namespace'=>'flush'],function(){
 });
 
 
-
-
-Route::get('home','HomeController@index');
 Route::get('/','HomeController@index');
 Route::controllers([
 	'auth' => 'Auth\AuthController',
@@ -48,6 +45,9 @@ Route::get('articles/{id}','ArticlesController@show');
 Route::group(['prefix'=>'user','namespace'=>'user','middleware'=>'auth'],function(){
 	Route::resource('articles','ArticlesController');
 });
-
+/***********************************************************************************/
+Route::get('session',function(){
+	dd( cookie('name','value',3600));
+});
 
 

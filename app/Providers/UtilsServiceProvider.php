@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use App\Http\Service\Utils;
 class UtilsServiceProvider extends ServiceProvider
 {
 	 /**
@@ -30,7 +30,7 @@ class UtilsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('App\Http\Service\Utils',function($app){
+        $this->app->singleton('Utils',function($app){
 			return new Utils();
 		});
     }

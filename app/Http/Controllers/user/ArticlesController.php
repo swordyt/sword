@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Article;
 use App\Comment;
-use Auth,Input,Redirect;
+use Auth,Input,Redirect,Utils;
 class ArticlesController extends Controller
 {
 	public function index(){
@@ -42,22 +42,24 @@ class ArticlesController extends Controller
 		
        $article = new Article();
 		$image = Input::file('image');
-		if(!$image->isValid()){
-			return Redirect::back()->withInput->withErrors('上传文件失败，请重新发表！');
+		if(!empty($image)){
+			if(!$image->isValid()){
+			return Redirect::back()->withErrors(array('上传文件失败，请重新发表！'));
+			}
+			$clientName = $image->getClientOriginalName();
+			$tmpName = $image->getFileName();
+			$realPath = $image->getRealPath();
+			$extension = $image->getClientOriginalExtension();
+			$newName = md5(date('ymdhis').$clientName).'.'.$extension;
+			$image->move(Utils::getUploadPath(),$newName);
+			$article->image =$newName;
 		}
-		$clientName = $image->getClientOriginalName();
-		$tmpName = $image->getFileName();
-		$realPath = $image->getRealPath();
-		$extension = $image->getClientOriginalExtension();
-		$newName = md5(date('ymdhis').$clientName).'.'.$extension;
-		$image->move(app_path().'/storage/uploads/',$newName);
-		$article->image =$newName;
 		$article->user_id = $request->input('user_id');
 		$article->title = $request->input('title');
 		$article->slug = $request->input('slug');
 		$article->body = $request->input('body');
 		if(!$article->save()){
-			return Redirect::back()->withInput()->withErrors('文章发表失败，请重新发表！');
+			return Redirect::back()->withErrors(array('文章发表失败，请重新发表！'));
 		}
 		return Redirect::to('/articles');
     }
@@ -91,7 +93,7 @@ class ArticlesController extends Controller
 		$user = Auth::user();
 		$article = Article::findOrFail($id);
 		if($user->id != $article->user_id){
-		  return Redirect::back()-withInput()->withErrors('文章修改失败！');
+		  return Redirect::back()->withErrors(array('文章修改失败！'));
 		}
 		$image = Input::file('image');
 		if(!isset($image)){
@@ -102,7 +104,7 @@ class ArticlesController extends Controller
 			$realPath = $image->getRealPath();
 			$extension = $image->getClientOriginalExtension();
 			$newName = md5(date('ymdhis').$clientName).'.'.$extension;
-			$image->move(app_path().'/storage/uploads/',$newName);
+			$image->move(Utils::getUploadPath(),$newName);
 			$article->image = $newName;
 			$article->image_name = $clientName;
 		}
@@ -110,7 +112,7 @@ class ArticlesController extends Controller
 		$article->slug = $request->input('slug');
 		$article->body = $request->input('body');
 		if(!$article->save()){
-			return Redirect::back()->withInput()->withErrors("文章修改失败！");
+			return Redirect::back()->withErrors(array("文章修改失败！"));
 		}
 		return view('articles.myhome')->withArticles(Article::MyArticles(Auth::user()->id)->get());
 		
@@ -118,7 +120,7 @@ class ArticlesController extends Controller
 		
 		
 	}catch(Exception $e){
-			Redirect::back()->withInput()->withErrors('文章更新失败！');
+			Redirect::back()->withErrors(array('文章更新失败！'));
 		}
     }
 

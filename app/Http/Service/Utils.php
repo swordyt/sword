@@ -2,9 +2,9 @@
 class Utils {
 	public  function getUploadPath(){
 		if(stristr(php_uname('s'),'windows')){
-			return Utiles::getWinPath();
+			return $this->getWinPath();
 		}elseif(stristr(php_uname('s'),'linux')){
-			return Utiles::getLinuxPath();
+			return $this->getLinuxPath();
 		}
 	}
 	public function doPost($url,$data){
