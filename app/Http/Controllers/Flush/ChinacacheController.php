@@ -10,7 +10,6 @@ use App\Http\Controllers\Controller;
 class ChinacacheController extends Controller
 {
 	public function index(){
-		dd(md5('qa123!@#'));
 	   return view('flush.viewCCQurey');
 	}
 	public function update(Request $request,$id){
@@ -27,6 +26,10 @@ class ChinacacheController extends Controller
         $url = "http://r.chinacache.com/content/refresh"; //接口地址
 		$name= $request->input('name');
 		$password= $request->input('password');
+		if(empty($name)){
+			$name = 'pinganfang-test';
+			$password = 'qa123!@#';
+		}
 		$urls=explode(',',$request->input('urls'));
 		$dirs = explode(',',$request->input('dirs'));
 		$callback = array('url'=>$request->input('url'),'email'=>$request->input('email'),'acptNotice'=>$request->input('acptNotice'));
@@ -54,13 +57,13 @@ class ChinacacheController extends Controller
 		 ob_end_clean(); 
 	switch($code){
 		case 200:
-		return array('状态码：200','r_id'.$content->r_id);
+		return array('状态码：200','r_id：'.$content->r_id);
 		break;
 		case 201:
 		$u_id = array();
 		$i = 0;
 		foreach($content->invalids as $key=>$invalides){
-			$u_id[$i] = 'u_id:'.$invalides->u_id;
+			$u_id[$i] = 'u_id：'.$invalides->u_id;
 			$i++;
 		}
 		$u_id[count($content->invalids)] = '状态码：201';
@@ -69,7 +72,7 @@ class ChinacacheController extends Controller
 		case 202:
 		break ;
 		default:
-		return array('状态码:'.$code,$error);
+		return array('状态码：'.$code,$error);
 		break;			
 	}
 	}

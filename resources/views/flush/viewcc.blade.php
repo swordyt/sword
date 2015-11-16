@@ -101,7 +101,7 @@
 			<div class="form-group">
 							<label class="col-md-4 control-label">urls:</label>
 							<div class="col-md-6">
-							<textarea  name="urls" required="required" rows="3" class="form-control" ></textarea>
+							<textarea  name="urls" rows="3" class="form-control" ></textarea>
 							</div>
 						</div>
 
