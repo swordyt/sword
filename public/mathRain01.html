@@ -1,0 +1,90 @@
+<!DOCUTYPE>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" >
+    <title>数字雨</title>
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+            overflow: hidden;
+        }
+    #contain{
+        margin-left:auto;
+        margin-right: auto;
+        width: 960px;
+        overflow: hidden;
+    }
+    </style>
+</head><BODY >
+<div id="Contain">
+    <script language="JavaScript">
+       // if (document.all){
+            Cols=26;//列数
+            charLen = 28;
+            Cs=40;//列间距
+            Ts=20; //显示数字大小
+            Tc='#008800';//字体颜色
+            Tc1='#00ff00';//首数字的字体颜色
+            MnS=20;
+            MxS=1000;
+            Sp=new Array();
+            S=new Array();
+            Y=new Array();
+            C=new Array();//存储数字串
+            M=new Array();//存储格式化后的数字串
+            B='';
+            RC=new Array();
+            E=new Array();//每列的首数字html
+            Tcc=new Array(0,1);//数字显示组
+            document.write("<div id='Container' style='position:absolute;top:0'>");
+            document.write("<div style='position:relative'>");
+            for(i=0; i < Cols; i++){
+                S[i]=Cs+Cs*(i+1);
+                document.write("<div id='A' style='position:absolute;top:0;font-family:Arial;font-size:"
+                        +Ts+"px;left:"+S[i]+";width:"+Ts+"px;height:0px;color:"+Tc+";visibility:hidden'></div>");
+            }
+            document.write("</div></div>");
+
+            for(j=0; j < Cols; j++){
+                RC[j]=1+Math.round(Math.random()*charLen);//随机生成每串数字的长度
+                Y[j]=0;//初始化没串数字的初始top
+                Sp[j]=Math.round(MnS+Math.random()*MxS);//20~50
+                for(i=0; i < RC[j]; i++){
+                    B='';
+                    C[i]=Math.round(Math.random()*1)+' ';
+                    M[j]=B+=C[i];
+                }
+            }
+            function Cycle(){
+                //Container.style.top=window.document.body.scrollTop;
+                for (i=0; i < Cols; i++){
+                    var r = Math.floor(Math.random()*Tcc.length);
+                    E[i] = '<font color='+Tc1+'>'+Tcc[r]+'</font>';
+                    Y[i]+=Sp[i];
+
+                   if (Y[i] > window.document.body.clientHeight){
+                        for(i2=0; i2 < Cols; i2++){
+                            RC[i2]=1+Math.round(Math.random()*charLen);
+                            for(i3=0; i3 < RC[i2]; i3++){
+                                B='';
+                                C[i3]=Math.round(Math.random()*1)+' ';
+                                C[Math.floor(Math.random()*i2)]=' '+' ';
+                                M[i]=B+=C[i3];
+                                Y[i]=-Ts*M[i].length/1.5;
+                            }
+                            Sp[i]=Math.round(MnS+Math.random()*MxS);
+                        }
+                    }
+                    A[i].style.visibility='visible';
+                    A[i].style.top=Y[i];
+                    A[i].innerHTML=M[i]+' '+E[i]+' ';
+                }
+                setTimeout('Cycle()',250);
+            }
+           Cycle();
+       // }
+    </script>
+</div>
+</body>
+</html>
