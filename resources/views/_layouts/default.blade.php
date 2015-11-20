@@ -4,8 +4,6 @@
 	<meta charset="utf-8" >
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" >
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<link rel="shortcut icon" href="{{url('ico.ico')}}" type="image/x-icon" />
-	<link rel="icon" href="{{url('ico.ico')}}" type="image/x-icon" />
 	<title>
 	Sword
 	</title>
@@ -22,7 +20,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Sword</a>
+				<a class="navbar-brand" href="/">Sword</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -41,6 +39,7 @@
 			</div>
 		</div>
 	</nav>
+	
 	<div>
 		@yield('content')
 		<div id="footer" style="text-align:center; border-top:dashed 3px #eeeeee;margin:50px 0;padding:20px;">
